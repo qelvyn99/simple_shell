@@ -28,22 +28,28 @@ int main(void)
 			free(input);
 			return (0);
 		}
-
-		builtins(input);
-		if (strncmp_function(input, "cd", 2) == 0)
+		if (strncmp_function(input, "alias", 5) == 0)
 		{
-			path = stmstr_function(input + 2);
-			cd_function(path);
-			free(input);
-			input = NULL;
-			input_size = 0;
-
+			alias_function(stmstr_function(input + 5));
 		}
-		if (read_size > 1)
+		else
 		{
-			result = exec_cmd(stmstr_function(input));
-			if (result == -1)
-				break;
+			builtins(input);
+			if (strncmp_function(input, "cd", 2) == 0)
+			{
+				path = stmstr_function(input + 2);
+				cd_function(path);
+				free(input);
+				input = NULL;
+				input_size = 0;
+
+			}
+			if (read_size > 1)
+			{
+				result = exec_cmd(stmstr_function(input));
+				if (result == -1)
+					break;
+			}
 		}
 	}
 	free(input);
