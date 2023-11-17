@@ -11,18 +11,6 @@
 #include <stddef.h>
 #include <sys/wait.h>
 
-/* Struct for aliases*/
-typedef struct Alias 
-{
-    char *name;
-    char *value;
-    struct Alias *next;
-} Alias;
-
-void alias_function(char *args);
-void print_aliases(void);
-void add_alias(char *name, char *value);
-
 extern char **environ;
 #define MAX_INPUT_LEN 1024
 
